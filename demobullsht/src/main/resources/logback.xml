@@ -1,0 +1,25 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<configuration>-->
+<!--    <appander name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <layout class = "ch.qos.logback.classic.PatternLayout">-->
+<!--            <pattern>-->
+<!--                %d{HH:mm:SSS} [%t] %-5level %logger{36} - %msg%n-->
+<!--            </pattern>-->
+<!--        </layout>-->
+
+<!--    </appander>-->
+<!--    <appander name="FILE" class="ch.qos.logback.core.FileAppender">-->
+<!--        <layout>-->
+<!--            <pattern>-->
+<!--                %d{HH:mm:SSS} [%t] %-5level %logger{36} - %msg%n-->
+<!--            </pattern>-->
+<!--        </layout>-->
+<!--    </appander>-->
+<!--    <logger name="com.example.demobullsht.demobullsht.booking " level ="TRACE">-->
+<!--        <appendence-ref>CONSOLE</appendence-ref>-->
+
+<!--        <appendence-ref>FILE</appendence-ref>-->
+
+<!--    </logger>-->
+<!--</configuration>-->
+
