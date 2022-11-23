@@ -20,6 +20,8 @@ public class CityController {
 
     private final CityMapper cityMapper;
 
+
+
     @PostMapping("/")
     public ResponseEntity<String> createCity(String newCityName) {
         cityService.addCity(newCityName);

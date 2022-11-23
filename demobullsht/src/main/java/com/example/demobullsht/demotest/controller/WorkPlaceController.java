@@ -32,6 +32,10 @@ public class WorkPlaceController {
         return ResponseEntity.ok("Город успешно создан.");
     }
 
+
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<WorkPlaceDto> getWorkPlaceById(@PathVariable Long id) {
         return ResponseEntity.ok(workPlaceMapper.workPlaceToDto(workPlaceService.getById(id))

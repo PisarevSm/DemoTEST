@@ -19,6 +19,9 @@ public class OfficeDto {
 
     private String workNumber;
 
+
+
+
     private LocalTime startOfDay;
 
     private LocalTime endOfDay;
