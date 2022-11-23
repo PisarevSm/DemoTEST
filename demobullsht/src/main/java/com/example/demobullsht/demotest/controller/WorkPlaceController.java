@@ -20,30 +20,17 @@ public class WorkPlaceController {
 
     private final WorkPlaceMapper workPlaceMapper;
 
+    private final FloorService floorService;
+
+    private final WorkPlaceTypeService workPlaceTypeService;
+
+
     @PostMapping("/")
-    public ResponseEntity<String> createWorkPlace(WorkPlaceTypeEntity type, FloorEntity floor, Integer newCapacity) {
-        workPlaceService.addWorkPlace(type,floor,newCapacity);
+    public ResponseEntity<String> createWorkPlace(String newWorkPlace) {
+        workPlaceService.addWorkPlace(newWorkPlace);
 
-        return ResponseEntity.ok("Место успешно создано.");
+        return ResponseEntity.ok("Город успешно создан.");
     }
-    //'это
-    @GetMapping("/all")
-    public ResponseEntity<Page<WorkPlaceDto>> getWorkPlace() {
-        Page<WorkPlaceDto> workPlace;
-
-        workPlace = workPlaceService.getAll()
-            .stream()
-            .map(workPlaceMapper::workPlaceToDto)
-            .toPage();
-
-        return ResponseEntity.ok(workPlace);
-    }
-//    public List<WorkPlaceEntity> getAll() {
-//        return workPlaceRepository.findAll();
-//    }
-//public Page<WorkPlaceEntity> getAll(PageRequest pageRequest) {
-//    return workPlaceRepository.findAll(pageRequest);
-//}
 
     @GetMapping("/{id}")
     public ResponseEntity<WorkPlaceDto> getWorkPlaceById(@PathVariable Long id) {
@@ -51,22 +38,23 @@ public class WorkPlaceController {
         );
     }
 
-    @PutMapping("/")
-    public void updateWorkPlace(
-        @PathVariable("workPlaceId") Long id,
-        @RequestBody WorkPlaceDto workPlaceDto
-    ) {
-
-        WorkPlaceEntity workPlaceEntity = workPlaceService.getById(id);
-
-        if (workPlaceDto.getCapacity() != null &&
-            workPlaceDto.getCapacity().longValue() > 0 &&
-            !Objects.equals(workPlaceEntity.getCapacity(), workPlaceDto.getCapacity())) {
-            workPlaceEntity.setCapacity(workPlaceDto.getCapacity());
-        }
-        workPlaceService.updateWorkPlace(workPlaceEntity);
+    @GetMapping("/all")
+    public ResponseEntity<Page<WorkPlaceDto>> getWorkPlace(PageRequest pageRequest) {
+        Page<WorkPlaceEntity> workPlace = workPlaceService.getAll(pageRequest);
+        Page<WorkPlaceDto> workPlaceDto = workPlace.map(workPlaceMapper::workPlaceToDto);
+        return ResponseEntity.ok(workPlaceDto);
     }
 
+    @PutMapping("/")
+    public ResponseEntity<String> updateWorkPlace(@RequestBody WorkPlaceDto dto) {
+        FloorEntity floor;
+        floor = floorService.getById(dto.getFloorId());
+        WorkPlaceTypeEntity type;
+        type = workPlaceTypeService.getById(dto.getTypeId());
+        workPlaceService.update(workPlaceMapper.dtoToWorkPlace(dto, floor, type));
+
+        return ResponseEntity.ok("Данные этажа успешно измененны.");
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteWorkPlace(@PathVariable Long id) {

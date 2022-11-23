@@ -4,11 +4,14 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class WorkPlaceDto {
 
     private Long id;
+
+    private Long typeId;
+
+    private Long floorId;
 
     private Integer capacity;
 

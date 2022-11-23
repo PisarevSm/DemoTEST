@@ -40,6 +40,7 @@ public class WorkPlaceTypeService {
     }
 
     public void updateWorkPlaceType(String newName) {
+
         workPlaceTypeRepository.save(new WorkPlaceTypeEntity(null, newName));
     }
 

@@ -1,5 +1,6 @@
 package com.example.demobullsht.demotest.dto;
 
+import com.example.demobullsht.demotest.entity.*;
 import lombok.*;
 
 @Getter
@@ -11,7 +12,7 @@ public class OfficeBookingDto {
 
     private Long id;
 
-    private String name;
+    private CityEntity city;
 
     private String address;
 

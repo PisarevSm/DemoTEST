@@ -60,9 +60,8 @@ public class FloorService {
     public void deleteFloor(Long id) {
 
         if (getById(id) == null) {
-            throw new NotFoundException(String.format("Этажа с данным id не существует: %s", id));
+            throw new NotFoundException("Этажа с данным id не существует: " + id);
         }
-
 
         floorRepository.deleteById(id);
     }

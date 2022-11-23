@@ -11,7 +11,7 @@ import lombok.experimental.*;
 @AllArgsConstructor
 @Accessors(chain = true)
 @Table(name = "workplaces")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(/*access = AccessLevel.PROTECTED*/)
 public class WorkPlaceEntity {
 
     @Id
@@ -30,5 +30,6 @@ public class WorkPlaceEntity {
     private FloorEntity floor;
 
     private Integer capacity;
+
 
 }

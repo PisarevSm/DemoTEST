@@ -10,12 +10,22 @@ import org.springframework.stereotype.*;
 public class WorkPlaceMapper {
 
     public WorkPlaceDto workPlaceToDto(WorkPlaceEntity workPlace) {
-        WorkPlaceDto dto = new WorkPlaceDto(
+
+        return new WorkPlaceDto(
             workPlace.getId(),
+            workPlace.getType().getId(),
+            workPlace.getFloor().getId(),
             workPlace.getCapacity()
         );
+    }
+    public WorkPlaceEntity dtoToWorkPlace(WorkPlaceDto dto, FloorEntity floor, WorkPlaceTypeEntity type) {
 
-        return dto;
+        return new WorkPlaceEntity(
+            dto.getId(),
+            type,
+            floor,
+            dto.getCapacity()
+        );
     }
 
 }

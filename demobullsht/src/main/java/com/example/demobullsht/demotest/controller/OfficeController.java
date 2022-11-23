@@ -47,12 +47,12 @@ public class OfficeController {
         return ResponseEntity.ok(officeMapper.officeToDto(officeService.getById(id))
         );
     }
-    @GetMapping("/id{address}")
+    @GetMapping("/{address}")
     public ResponseEntity<OfficeDto> getOfficeByAddress(@PathVariable String address) {
         return ResponseEntity.ok(officeMapper.officeToDto(officeService.getByAddress(address))
         );
     }
-    @GetMapping("/id{workNumber}")
+    @GetMapping("/{workNumber}")
     public ResponseEntity<OfficeDto> getOfficeByWorkNumber(@PathVariable String workNumber) {
         return ResponseEntity.ok(officeMapper.officeToDto(officeService.getByWorkNumber(workNumber))
         );
